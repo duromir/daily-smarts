@@ -1,0 +1,63 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "68d42be32b7b3a6918d169aa0aef4959",
+    "entities": [
+      {
+        "tableName": "quotes",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `quote_text` TEXT, `quote_author` TEXT, `sender_name` TEXT, `sender_link` TEXT, `quote_link` TEXT, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "quoteText",
+            "columnName": "quote_text",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "quoteAuthor",
+            "columnName": "quote_author",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "senderName",
+            "columnName": "sender_name",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "senderLink",
+            "columnName": "sender_link",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "quoteLink",
+            "columnName": "quote_link",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"68d42be32b7b3a6918d169aa0aef4959\")"
+    ]
+  }
+}
