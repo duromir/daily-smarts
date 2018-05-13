@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
 
 import net.firstcolor.android.dailysmarts.adapters.TabsPagerAdapter;
 
@@ -15,10 +16,12 @@ public class MainActivity extends AppCompatActivity implements QuotesFragment.On
     private TabsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
     private Toolbar toolbar;
+    private Button updateButton;
 
 
 
     private QuotesFragment fragmentFavourites;
+    private QuotesFragment fragmentDaily;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,12 +29,24 @@ public class MainActivity extends AppCompatActivity implements QuotesFragment.On
         initApp();
         setContentView(R.layout.activity_main);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
+        updateButton = (Button) findViewById(R.id.update_btn);
         setSupportActionBar(toolbar);
         setupTabs();
+
+        updateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                fragmentDaily.loadItems();
+            }
+        });
     }
 
     public void setFragmentFavourites(QuotesFragment fragmentFavourites) {
         this.fragmentFavourites = fragmentFavourites;
+    }
+
+    public void setFragmentDaily(QuotesFragment fragmentDaily) {
+        this.fragmentDaily = fragmentDaily;
     }
 
     private void setupTabs(){
@@ -48,10 +63,10 @@ public class MainActivity extends AppCompatActivity implements QuotesFragment.On
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 if(tab.getPosition() == 0){
-                    toolbar.findViewById(R.id.update_btn).setVisibility(View.VISIBLE);
+                    updateButton.setVisibility(View.VISIBLE);
                 }
                 else if(tab.getPosition() == 1){
-                    toolbar.findViewById(R.id.update_btn).setVisibility(View.GONE);
+                    updateButton.setVisibility(View.GONE);
                 }
             }
 

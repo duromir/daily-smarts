@@ -22,6 +22,8 @@ public class TabsPagerAdapter extends FragmentPagerAdapter {
         super(fm);
         dailyQuoteTabFragment = QuotesFragment.newInstance(new WebQuoteProvider());
         //myQuotesTabFragment = QuotesFragment.newInstance(new DummyQuoteProvider());
+        activity.setFragmentDaily(dailyQuoteTabFragment);
+
         myQuotesTabFragment = QuotesFragment.newInstance(new DBQuoteProvider());
         activity.setFragmentFavourites(myQuotesTabFragment);
     }
